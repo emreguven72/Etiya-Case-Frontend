@@ -1,3 +1,4 @@
+import axios from "axios";
 import React, { ReactNode, createContext, useContext, useState } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
 import { toast } from 'react-toastify';
@@ -23,51 +24,39 @@ export const AuthProvider = ({ children }: any) => {
     const [auth, setAuth] = useState(localStorageAuthObject); //localStroage'dan al
 
     const login = async(username: String, password: String) => {
-        console.log(auth)
-        //API requests
+        const response = await axios.post(`http://localhost:3000/api/v1/users/login`, {
+            username: username,
+            password: password
+        });
 
-        const _user = {
-            username: "emre1411",
-            password: "123"
+        let token = response.data.token;
+
+        if(token) {
+            const authenticatedUser: User = {
+                username: username
+            }
+            
+            localStorage.setItem('token', token);
+    
+            setAuth(authenticatedUser);
+            localStorage.setItem('auth', JSON.stringify(authenticatedUser));
+            navigate(redirectPath, { replace: true });
+        } else {
+            window.alert("Hatalı Bilgi Girişi");
         }
-
-        if(!_user) {
-            navigate('/login');
-            return toast.error('Hatalı Bilgi Girişi', {
-                position: 'bottom-right',
-                autoClose: 3000,
-                hideProgressBar: false,
-                closeOnClick: true,
-                pauseOnHover: true,
-                draggable: true,
-                progress: undefined,
-                theme: 'colored',
-              });
-        } else if (_user.username !== username || _user.password !== password) {
-            return toast.error('Hatalı Şifre Girişi', {
-              position: 'bottom-right',
-              autoClose: 3000,
-              hideProgressBar: false,
-              closeOnClick: true,
-              pauseOnHover: true,
-              draggable: true,
-              progress: undefined,
-              theme: 'colored',
-            });
-        }
-
-        var authenticatedUser: User = {
-            username: _user.username
-        }
-
-        setAuth(authenticatedUser);
-        localStorage.setItem('auth', JSON.stringify(authenticatedUser));
-        navigate(redirectPath, { replace: true });
     }
 
     const logout = () => {
+        var token = localStorage.getItem('token');
+
+        axios.post(`http://localhost:3000/api/v1/users/logout`, null, {
+            headers: {
+                Authorization: `Bearer ${token}`
+            }
+        })
         setAuth(blankUser);
         localStorage.removeItem('auth');
+        localStorage.removeItem('token');
     };
 
     return (

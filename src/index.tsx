@@ -5,6 +5,7 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 import { BrowserRouter } from 'react-router-dom'
 import { AuthProvider } from './providers/AuthProvider';
+import { CompanyProvider } from './providers/CompanyProvider';
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
@@ -13,7 +14,9 @@ root.render(
   <React.StrictMode>
     <BrowserRouter>
       <AuthProvider>
-        <App />
+        <CompanyProvider>
+          <App />
+        </CompanyProvider>
       </AuthProvider>
     </BrowserRouter>
   </React.StrictMode>
