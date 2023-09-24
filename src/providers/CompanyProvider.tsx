@@ -8,6 +8,7 @@ export const CompanyProvider = ({ children }: any) => {
     const [companies, setCompanies]: any = useState(null);
 
     var token = localStorage.getItem('token');
+    const navigate = useNavigate();
 
     const getLatestCompanies = async() => {
         const response = await axios.get(`http://localhost:3000/api/v1/companies/getLatestCompanies`, {
@@ -21,8 +22,45 @@ export const CompanyProvider = ({ children }: any) => {
         setCompanies(latestCompanies);
     }
 
+    const getAllCompanies = async() => {
+        const response = await axios.get(`http://localhost:3000/api/v1/companies/getAll`, {
+            headers: {
+                Authorization: `Bearer ${token}`
+            }
+        });
+
+        var allCompanies = response.data;
+
+        setCompanies(allCompanies);
+    }
+
+    const createCompany = async(company_name: String, company_legal_number: String, incorporation_country: String, website: String) => {
+        const response = await axios.post(`http://localhost:3000/api/v1/companies/create`, {
+            company_name: company_name,
+            company_legal_number: company_legal_number,
+            incorporation_country: incorporation_country,
+            website: website
+        } , {
+            headers: {
+                Authorization: `Bearer ${token}`
+            }
+        });
+
+        document.location.reload();
+    }
+
+    const deleteCompany = async(id: number) => {
+        const response = await axios.delete(`http://localhost:3000/api/v1/companies/delete/${id}`,{
+            headers: {
+                Authorization: `Bearer ${token}`
+            }
+        });
+
+        document.location.reload();
+    }
+
     return (
-        <CompanyContext.Provider value={{ companies, getLatestCompanies }} >
+        <CompanyContext.Provider value={{ companies, getLatestCompanies, getAllCompanies, createCompany, deleteCompany }} >
           {children}
         </CompanyContext.Provider>
     );

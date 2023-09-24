@@ -1,15 +1,19 @@
-import { Table } from 'antd';
+import { Button, Space, Table } from 'antd';
 import type { ColumnsType } from 'antd/es/table';
 import { useEffect } from 'react';
 import { useCompanies } from '../providers/CompanyProvider';
+import { useNavigate } from 'react-router-dom';
 
-const CompanyTable = () => {
+const AllCompaniesTable = () => {
+    const { companies, getAllCompanies, deleteCompany }: any = useCompanies();
+    const navigate = useNavigate();
 
-    //TODO: sayfaya ilk girdiğinde hata alıyorsun muhtemelen companies boş geldiği için.
-
-    const { companies, getLatestCompanies }: any = useCompanies();
+    const deleteCompanyRecord = (id: number) => {
+        deleteCompany(id);
+    }
 
     interface DataType {
+        id: number
         company_name: String,
         company_legal_number: String,
         incorporation_country: String,
@@ -18,16 +22,16 @@ const CompanyTable = () => {
 
     useEffect(() => {
         if(!companies) {
-            getLatestCompanies();
+            getAllCompanies();
         }
-    }, [companies, getLatestCompanies])
+    }, [companies, getAllCompanies])
 
     const columns: ColumnsType<DataType> = [
         {
             title: 'Şirket Adı',
             dataIndex: 'company_name',
             key: 'company_name',
-            render: (text) => <a>{text}</a>,
+            render: (text, record) => <a onClick={() => navigate(`/company/${record.id}`)}>{text}</a>,
         },
         {
             title: 'Yasal Numara',
@@ -44,9 +48,16 @@ const CompanyTable = () => {
             dataIndex: 'website',
             key: 'website',
         },
+        {
+            key: 'action',
+            render: (_, record) => (
+              <Space size="middle">
+                <Button onClick={() => null} className='text-yellow-500' type='default'>Güncelle</Button>
+                <Button onClick={() => deleteCompanyRecord(record.id)} className='text-red-500' type='default'>Sil</Button>
+              </Space>
+            ),
+          },
     ];
-
-    
 
     const App: React.FC = () => <Table columns={columns} dataSource={!companies ? [] : companies} />;
 
@@ -55,4 +66,4 @@ const CompanyTable = () => {
     );
 }
 
-export default CompanyTable;
+export default AllCompaniesTable;

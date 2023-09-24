@@ -1,10 +1,27 @@
 import { Button } from "antd";
 import { useAuth } from "../providers/AuthProvider";
+import { useNavigate } from "react-router-dom";
 
 
 const Navbar = () => {
 
     const { logout }: any = useAuth();
+    const navigate = useNavigate();
+
+    const goToHomePage = () => {
+        navigate('/home');
+        document.location.reload();
+    }
+
+    const goToCompaniesPage = () => {
+        navigate('/companies');
+        document.location.reload();
+    }
+
+    const goToProductsPage = () => {
+        navigate('/products');
+        document.location.reload();
+    }
 
     return(
         <nav className="bg-white border-gray-200 dark:bg-gray-900">
@@ -21,13 +38,13 @@ const Navbar = () => {
             <div className="hidden w-full md:block md:w-auto" id="navbar-default">
             <ul className="font-medium flex flex-col p-4 md:p-0 mt-4 border border-gray-100 rounded-lg bg-gray-50 md:flex-row md:space-x-8 md:mt-0 md:border-0 md:bg-white dark:bg-gray-800 md:dark:bg-gray-900 dark:border-gray-700">
                 <li>
-                <a href="#" className="block py-2 pl-3 pr-4 text-white bg-blue-700 rounded md:bg-transparent md:text-blue-700 md:p-0 dark:text-white md:dark:text-blue-500" aria-current="page">Anasayfa</a>
+                <a onClick={goToHomePage} className="block cursor-pointer py-2 pl-3 pr-4 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent">Anasayfa</a>
                 </li>
                 <li>
-                <a href="#" className="block py-2 pl-3 pr-4 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent">Şirketler</a>
+                <a onClick={goToCompaniesPage} className="block cursor-pointer py-2 pl-3 pr-4 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent">Şirketler</a>
                 </li>
                 <li>
-                <a href="#" className="block py-2 pl-3 pr-4 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent">Ürünler</a>
+                <a onClick={goToProductsPage} className="block cursor-pointer py-2 pl-3 pr-4 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent">Ürünler</a>
                 </li>
             </ul>
             </div>

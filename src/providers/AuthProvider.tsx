@@ -40,7 +40,8 @@ export const AuthProvider = ({ children }: any) => {
     
             setAuth(authenticatedUser);
             localStorage.setItem('auth', JSON.stringify(authenticatedUser));
-            navigate(redirectPath, { replace: true });
+            navigate('/home', { replace: true });
+            document.location.reload();
         } else {
             window.alert("Hatalı Bilgi Girişi");
         }
