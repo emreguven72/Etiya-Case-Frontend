@@ -2,6 +2,7 @@ import { Button } from "antd";
 import AllCompaniesTable from "../components/AllCompaniesTable";
 import AddCompanyInputArea from "../components/AddCompanyInputArea";
 import { useState } from "react";
+import SearchCompanyArea from "../components/SearchCompanyArea";
 
 const CompaniesPage = () => {
     const [shouldInputAreaOpen, setShouldInputAreaOpen]: any = useState(false);
@@ -24,6 +25,7 @@ const CompaniesPage = () => {
                         <Button onClick={() => closeInputArea()} className='text-red-500' type='default'>İptal</Button>
                     </div> 
                 : null}
+                <SearchCompanyArea />
                 <AllCompaniesTable />
             </div>
         </div>

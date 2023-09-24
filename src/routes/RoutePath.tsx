@@ -3,6 +3,7 @@ import LoginPage from "../pages/LoginPage";
 import HomePage from "../pages/HomePage";
 import Authentication from "./Authentication";
 import CompaniesPage from "../pages/CompaniesPage";
+import UpdateCompanyPage from "../pages/UpdateCompanyPage";
 
 const RoutePath = () => {
     return(
@@ -17,6 +18,11 @@ const RoutePath = () => {
             <Route path="/companies" element={
                 <Authentication>
                     <CompaniesPage />
+                </Authentication>
+            } />
+            <Route path="/companies/update/:id" element={
+                <Authentication>
+                    <UpdateCompanyPage />
                 </Authentication>
             } />
 
