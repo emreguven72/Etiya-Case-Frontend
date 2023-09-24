@@ -33,7 +33,6 @@ const UpdateCompanyInputAreas = ({ id }) => {
         onFinishFailed={onFinishFailed}
         className='flex flex-row gap-2 mb-4 justify-center'
         >
-            <h1>{companyLegalNumberInputValue}</h1>
             <Form.Item
                 name="company_name"
                 rules={[{ required: true, message: 'Şirket adı giriniz!' }]}
