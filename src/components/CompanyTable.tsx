@@ -27,7 +27,6 @@ const CompanyTable = () => {
             title: 'Şirket Adı',
             dataIndex: 'company_name',
             key: 'company_name',
-            render: (text) => <a>{text}</a>,
         },
         {
             title: 'Yasal Numara',

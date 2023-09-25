@@ -43,8 +43,7 @@ const AllCompaniesTable = () => {
             title: 'Şirket Adı',
             dataIndex: 'company_name',
             key: 'company_name',
-            render: (text, record) => <a onClick={() => navigate(`/company/${record.id}`)}>{text}</a>,
-        },
+            },
         {
             title: 'Yasal Numara',
             dataIndex: 'company_legal_number',

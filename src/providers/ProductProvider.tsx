@@ -85,7 +85,7 @@ export const ProductProvider = ({ children }: any) => {
     }
 
     const updateProduct = async(id: number, product_name: String, product_amount: number, amount_unit: String, company_id: number, product_category: String) => {
-        const response = await axios.patch(`http://localhost:3000/api/v1/companies/update`,{
+        const response = await axios.patch(`http://localhost:3000/api/v1/products/update`,{
             id: id,
             product_name: product_name,
             product_amount: product_amount,

@@ -49,7 +49,6 @@ const AllProductsTable = () => {
             title: 'Ürün Adı',
             dataIndex: 'product_name',
             key: 'product_name',
-            render: (text, record) => <a onClick={() => navigate(`/company/${record.id}`)}>{text}</a>,
         },
         {
             title: 'Ürün Miktarı',
