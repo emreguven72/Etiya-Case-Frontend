@@ -10,11 +10,11 @@ const UpdateProductInputArea = ({ id }) => {
     const location = useLocation();
     const navigate = useNavigate();
 
-    const { productName, productAmount, amountUnit, companyId, productCategory } = location.state;
+    const { productName, productAmount, amountUnit, companyName, productCategory } = location.state;
 
     const OnFinish = (values) => {
-        updateProduct(id, values.product_name, values.product_amount, values.amount_unit, values.company_id, values.product_category);
-        navigate('/products')
+        updateProduct(id, values.product_name, values.product_amount, values.amount_unit, values.company_name, values.product_category);
+        navigate('/products');
     };
 
     const onFinishFailed = (errorInfo) => {
@@ -61,20 +61,20 @@ const UpdateProductInputArea = ({ id }) => {
                 </Form.Item>
 
                 <Form.Item
-                    name="company_id"
-                    rules={[{ required: true, message: 'Şirket ID giriniz!' }]}
+                    name="company_name"
+                    rules={[{ required: true, message: 'Şirket Adı giriniz!' }]}
                     >
-                        <Input defaultValue={companyId} className='w-[300px] border-gray-400 placeholder-black' placeholder="Şirket ID" />
+                        <Input defaultValue={companyName} className='w-[300px] border-gray-400 placeholder-black' placeholder="Şirket Adı" />
                 </Form.Item>
 
                 <Form.Item
                     name="product_category"
-                    rules={[{ required: true, message: 'Kategori ID giriniz' }]}
+                    rules={[{ required: true, message: 'Kategori Adı giriniz' }]}
                     >
-                        <Input defaultValue={productCategory} className='w-[300px] border-gray-400 placeholder-black' placeholder="Kategori ID" />
+                        <Input defaultValue={productCategory} className='w-[300px] border-gray-400 placeholder-black' placeholder="Kategori Adı" />
                 </Form.Item>
                 
-                <Button className="text-yellow-500" type="default" htmlType="submit">Şirketi Güncelle</Button>
+                <Button className="text-yellow-500" type="default" htmlType="submit">Ürünü Güncelle</Button>
             </Form>
             <Button onClick={goToCompanyPage} className="text-red-500" type="default">İptal</Button>
         </div>

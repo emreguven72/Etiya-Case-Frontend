@@ -14,13 +14,13 @@ const AllProductsTable = () => {
         deleteProduct(id);
     }
 
-    const goToUpdateProductPage = (id: String, productName: String, productAmount: String, amountUnit: String, companyId: String, productCategory: String) => {
+    const goToUpdateProductPage = (id: String, productName: String, productAmount: String, amountUnit: String, companyName: String, productCategory: String) => {
         navigate(`/products/update/${id}`, {
             state: {
                 productName: productName,
                 productAmount: productAmount,
                 amountUnit: amountUnit,
-                companyId: companyId,
+                companyName: companyName,
                 productCategory: productCategory
             }
         });
@@ -78,7 +78,7 @@ const AllProductsTable = () => {
             key: 'action',
             render: (_, record) => (
               <Space size="middle">
-                <Button onClick={() => goToUpdateProductPage(record._id, record.product_name, record.product_amount, record.amount_unit, record.company_id, record.product_category)} className='text-yellow-500' type='default'>Güncelle</Button>
+                <Button onClick={() => goToUpdateProductPage(record._id, record.product_name, record.product_amount, record.amount_unit, record.company_name, record.product_category)} className='text-yellow-500' type='default'>Güncelle</Button>
                 <Button onClick={() => deleteProductRecord(record._id)} className='text-red-500' type='default'>Sil</Button>
               </Space>
             ),
