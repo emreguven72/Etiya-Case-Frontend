@@ -80,6 +80,10 @@ export const CompanyProvider = ({ children }: any) => {
             }
         });
 
+        if(response.data === "Company has products") {
+            window.alert("Silmeye çalıştığınız şirkete ait ürün bulunmamalı!");
+        }
+
         document.location.reload();
     }
 

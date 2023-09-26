@@ -6,12 +6,14 @@ import CompaniesPage from "../pages/CompaniesPage";
 import UpdateCompanyPage from "../pages/UpdateCompanyPage";
 import ProductsPage from "../pages/ProductsPage";
 import UpdateProductPage from "../pages/UpdateProductPage";
+import SignUpPage from "../pages/SignUpPage";
 
 const RoutePath = () => {
     return(
         <Routes>
             <Route path="/" element={<LoginPage />} />
             <Route path="/login" element={<LoginPage />} />
+            <Route path="/signup" element={<SignUpPage />} />
             <Route path="/home" element={
                 <Authentication>
                     <HomePage />

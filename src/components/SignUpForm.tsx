@@ -2,11 +2,11 @@ import React from 'react';
 import { Button, Form, Input } from 'antd';
 import { useAuth } from '../providers/AuthProvider';
 
-const LoginFormComponent = () => {
-    const { login }: any = useAuth();
+const SignUpFormComponent = () => {
+    const { signUp }: any = useAuth();
 
     const OnFinish = (values: any) => {
-        login(values.username, values.password);
+        signUp(values.name, values.username, values.password);
     };
     
     const OnFinishFailed = (errorInfo: any) => {
@@ -14,8 +14,9 @@ const LoginFormComponent = () => {
     };
     
     type FieldType = {
-      username?: string;
-      password?: string;
+        name?: string;
+        username?: string;
+        password?: string;
     };
     
     const LoginForm: React.FC = () => (
@@ -29,6 +30,14 @@ const LoginFormComponent = () => {
         onFinishFailed={OnFinishFailed}
         autoComplete="off"
       >
+        <Form.Item<FieldType>
+          label="İsim"
+          name="name"
+          rules={[{ required: true, message: 'İsminizi giriniz!' }]}
+        >
+          <Input />
+        </Form.Item>
+
         <Form.Item<FieldType>
           label="Kullanıcı adı"
           name="username"
@@ -47,7 +56,7 @@ const LoginFormComponent = () => {
     
         <Form.Item wrapperCol={{ offset: 12, span: 16 }}>
           <Button type="primary" htmlType="submit" className='bg-blue-600 w-[120px] h-[40px]'>
-            Giriş Yap
+            Kayıt Ol
           </Button>
         </Form.Item>
       </Form>
@@ -60,4 +69,4 @@ const LoginFormComponent = () => {
 }
 
 
-export default LoginFormComponent;
+export default SignUpFormComponent;

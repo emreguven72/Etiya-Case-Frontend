@@ -47,6 +47,16 @@ export const AuthProvider = ({ children }: any) => {
         }
     }
 
+    const signUp = async(name: String, username: String, password: String) => {
+        const response = await axios.post(`http://localhost:3000/api/v1/users/create`, {
+            name: name,
+            username: username,
+            password: password
+        });
+
+        login(username, password);
+    }
+
     const logout = () => {
         var token = localStorage.getItem('token');
 
@@ -61,7 +71,7 @@ export const AuthProvider = ({ children }: any) => {
     };
 
     return (
-        <AuthContext.Provider value={{ auth, login, logout }} >
+        <AuthContext.Provider value={{ auth, login, signUp, logout }} >
           {children}
         </AuthContext.Provider>
     );

@@ -10,7 +10,7 @@ function App() {
 
   return (
     <div className='flex flex-col'>
-      {(currentPath !== "/login" && currentPath !== "/")  ? <Navbar /> : null}
+      {(currentPath !== "/login" && currentPath !== "/" && currentPath !== "/signup")  ? <Navbar /> : null}
       <RoutePath />
     </div>
   );

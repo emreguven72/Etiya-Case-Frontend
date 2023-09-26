@@ -1,11 +1,11 @@
 import { useNavigate } from "react-router-dom";
-import LoginForm from "../components/LoginForm";
+import SignUpFormComponent from "../components/SignUpForm";
 
-const LoginPage = () => {
+const SignUpPage = () => {
     const navigate = useNavigate();
 
-    const goToSignUpPage = () => {
-        navigate("/signup");
+    const goToLoginPage = () => {
+        navigate("/login");
     }
 
     return(
@@ -15,11 +15,11 @@ const LoginPage = () => {
                     <h1 className="text-center ml-32 -mt-24 font-bold text-5xl text-blue-600">ETİYA</h1>
                 </div>
                 <div className="w-[400px]">
-                    <LoginForm />
+                    <SignUpFormComponent />
                 </div>
                 <div className="flex flex-row gap-2 ml-32">
-                    <p>Hesabınız yok mu?</p>
-                    <a onClick={goToSignUpPage} className="underline font-bold">Kayıt Ol</a>
+                    <p>Zaten hesabınız var mı?</p>
+                    <a onClick={goToLoginPage} className="underline font-bold">Giriş yap</a>
                 </div>
             </div>
 
@@ -27,4 +27,4 @@ const LoginPage = () => {
     );
 }
 
-export default LoginPage;
+export default SignUpPage;
