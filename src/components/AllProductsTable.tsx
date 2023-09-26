@@ -10,11 +10,11 @@ const AllProductsTable = () => {
     const { products, getAllProducts, deleteProduct}: any = useProduct();
     const navigate: any = useNavigate();
 
-    const deleteProductRecord = (id: number) => {
+    const deleteProductRecord = (id: String) => {
         deleteProduct(id);
     }
 
-    const goToUpdateProductPage = (id: number, productName: String, productAmount: String, amountUnit: String, companyId: number, productCategory: String) => {
+    const goToUpdateProductPage = (id: String, productName: String, productAmount: String, amountUnit: String, companyId: String, productCategory: String) => {
         navigate(`/products/update/${id}`, {
             state: {
                 productName: productName,
@@ -28,11 +28,11 @@ const AllProductsTable = () => {
     }
 
     interface DataType {
-        id: number
+        _id: String
         product_name: String,
         product_amount: String,
         amount_unit: String,
-        company_id: number,
+        company_id: String,
         product_category: String,
         company_name: String
     }
@@ -40,8 +40,12 @@ const AllProductsTable = () => {
     useEffect(() => {
         if(!products) {
             getAllProducts();
+        } else {
+            for (let index = 0; index < products.length; index++) {
+                products[index].company_name = products[index].company.company_name
+            }
+            console.log(products);
         }
-        console.log(products);
     }, [products, getAllProducts]) //do it for products
 
     const columns: ColumnsType<DataType> = [
@@ -74,8 +78,8 @@ const AllProductsTable = () => {
             key: 'action',
             render: (_, record) => (
               <Space size="middle">
-                <Button onClick={() => goToUpdateProductPage(record.id, record.product_name, record.product_amount, record.amount_unit, record.company_id, record.product_category)} className='text-yellow-500' type='default'>Güncelle</Button>
-                <Button onClick={() => deleteProductRecord(record.id)} className='text-red-500' type='default'>Sil</Button>
+                <Button onClick={() => goToUpdateProductPage(record._id, record.product_name, record.product_amount, record.amount_unit, record.company_id, record.product_category)} className='text-yellow-500' type='default'>Güncelle</Button>
+                <Button onClick={() => deleteProductRecord(record._id)} className='text-red-500' type='default'>Sil</Button>
               </Space>
             ),
         },

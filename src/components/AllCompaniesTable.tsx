@@ -8,11 +8,11 @@ const AllCompaniesTable = () => {
     const { companies, getAllCompanies, deleteCompany }: any = useCompanies();
     const navigate: any = useNavigate();
 
-    const deleteCompanyRecord = (id: number) => {
+    const deleteCompanyRecord = (id: String) => {
         deleteCompany(id);
     }
 
-    const goToUpdateCompanyPage = (id: number, companyName: String, companyLegalNumber: String, incorporationCountry: String, website: String) => {
+    const goToUpdateCompanyPage = (id: String, companyName: String, companyLegalNumber: String, incorporationCountry: String, website: String) => {
         navigate(`/companies/update/${id}`, {
             state: {
                 companyName: companyName,
@@ -25,7 +25,7 @@ const AllCompaniesTable = () => {
     }
 
     interface DataType {
-        id: number
+        _id: String
         company_name: String,
         company_legal_number: String,
         incorporation_country: String,
@@ -36,6 +36,7 @@ const AllCompaniesTable = () => {
         if(!companies) {
             getAllCompanies();
         }
+        console.log(companies);
     }, [companies, getAllCompanies])
 
     const columns: ColumnsType<DataType> = [
@@ -63,8 +64,8 @@ const AllCompaniesTable = () => {
             key: 'action',
             render: (_, record) => (
               <Space size="middle">
-                <Button onClick={() => goToUpdateCompanyPage(record.id, record.company_name, record.company_legal_number, record.incorporation_country, record.website)} className='text-yellow-500' type='default'>Güncelle</Button>
-                <Button onClick={() => deleteCompanyRecord(record.id)} className='text-red-500' type='default'>Sil</Button>
+                <Button onClick={() => goToUpdateCompanyPage(record._id, record.company_name, record.company_legal_number, record.incorporation_country, record.website)} className='text-yellow-500' type='default'>Güncelle</Button>
+                <Button onClick={() => deleteCompanyRecord(record._id)} className='text-red-500' type='default'>Sil</Button>
               </Space>
             ),
         },

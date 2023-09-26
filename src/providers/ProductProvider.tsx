@@ -19,6 +19,10 @@ export const ProductProvider = ({ children }: any) => {
 
         var allProducts = response.data;
 
+        allProducts.forEach((product: any) => {
+            product.company_name = product.company.company_name;
+        });
+
         setProducts(allProducts);
     }
 
@@ -30,6 +34,10 @@ export const ProductProvider = ({ children }: any) => {
         });
 
         var product = response.data;
+
+        product.forEach((product: any) => {
+            product.company_name = product.company.company_name;
+        });
 
         setProducts(product);
     }
@@ -43,6 +51,10 @@ export const ProductProvider = ({ children }: any) => {
 
         var product = response.data;
 
+        product.forEach((product: any) => {
+            product.company_name = product.company.company_name;
+        });
+
         setProducts(product);
     }
 
@@ -55,16 +67,20 @@ export const ProductProvider = ({ children }: any) => {
 
         var productsByCompany = response.data;
 
+        productsByCompany.forEach((product: any) => {
+            product.company_name = product.company.company_name;
+        });
+
         setProducts(productsByCompany);
     }
 
-    const createProduct = async(product_name: String, product_amount: number, amount_unit: String, company_id: number, product_category: String) => {
+    const createProduct = async(product_name: String, product_amount: number, amount_unit: String, company_name: String, product_category: String) => {
         const response = await axios.post(`http://localhost:3000/api/v1/products/create`, {
             product_name: product_name,
             product_amount: product_amount,
             amount_unit: amount_unit,
-            company_id: company_id,
-            product_category: product_category
+            product_category: product_category,
+            company_name: company_name
         } , {
             headers: {
                 Authorization: `Bearer ${token}`
@@ -74,7 +90,7 @@ export const ProductProvider = ({ children }: any) => {
         document.location.reload();
     }
 
-    const deleteProduct = async(id: number) => {
+    const deleteProduct = async(id: String) => {
         const response = await axios.delete(`http://localhost:3000/api/v1/products/delete/${id}`,{
             headers: {
                 Authorization: `Bearer ${token}`
@@ -84,7 +100,7 @@ export const ProductProvider = ({ children }: any) => {
         document.location.reload();
     }
 
-    const updateProduct = async(id: number, product_name: String, product_amount: number, amount_unit: String, company_id: number, product_category: String) => {
+    const updateProduct = async(id: String, product_name: String, product_amount: number, amount_unit: String, company_id: String, product_category: String) => {
         const response = await axios.patch(`http://localhost:3000/api/v1/products/update`,{
             id: id,
             product_name: product_name,

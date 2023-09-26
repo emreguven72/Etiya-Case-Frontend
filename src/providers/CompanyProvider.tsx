@@ -73,7 +73,7 @@ export const CompanyProvider = ({ children }: any) => {
         document.location.reload();
     }
 
-    const deleteCompany = async(id: number) => {
+    const deleteCompany = async(id: String) => {
         const response = await axios.delete(`http://localhost:3000/api/v1/companies/delete/${id}`,{
             headers: {
                 Authorization: `Bearer ${token}`
@@ -87,7 +87,7 @@ export const CompanyProvider = ({ children }: any) => {
         document.location.reload();
     }
 
-    const updateCompany = async(id: number, companyName: String, companyLegalNumber: String, incorporationCountry: String, website: String) => {
+    const updateCompany = async(id: String, companyName: String, companyLegalNumber: String, incorporationCountry: String, website: String) => {
         const response = await axios.patch(`http://localhost:3000/api/v1/companies/update`,{
             id: id,
             company_name: companyName,

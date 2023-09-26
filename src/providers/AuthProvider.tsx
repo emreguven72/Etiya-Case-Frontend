@@ -29,7 +29,7 @@ export const AuthProvider = ({ children }: any) => {
             password: password
         });
 
-        let token = response.data.token;
+        let token = response.data;
 
         if(token) {
             const authenticatedUser: User = {

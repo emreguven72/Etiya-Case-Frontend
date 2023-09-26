@@ -6,7 +6,8 @@ const AddProductInputArea = () => {
     const { createProduct } = useProduct();
 
     const OnFinish = (values) => {
-        createProduct(values.product_name, values.product_amount, values.amount_unit, values.company_id, values.product_category);
+        console.log(values.company_name);
+        createProduct(values.product_name, values.product_amount, values.amount_unit, values.company_name, values.product_category);
     };
 
     const onFinishFailed = (errorInfo) => {
@@ -41,10 +42,10 @@ const AddProductInputArea = () => {
             </Form.Item>
 
             <Form.Item
-                name="company_id"
-                rules={[{ required: true, message: 'Websitesi giriniz' }]}
+                name="company_name"
+                rules={[{ required: true, message: 'Şirket Adı Giriniz' }]}
                 >
-                    <Input className='w-[300px] border-gray-400 placeholder-black' placeholder="Şirket ID" />
+                    <Input className='w-[300px] border-gray-400 placeholder-black' placeholder="Şirket Adı" />
             </Form.Item>
 
             <Form.Item
