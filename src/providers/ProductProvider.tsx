@@ -37,7 +37,7 @@ export const ProductProvider = ({ children }: any) => {
 
         product.company_name = product.company.company_name;
 
-        setProducts(product);
+        setProducts([product]);
     }
 
     const getProductByName = async(productName: String) => {
@@ -51,7 +51,7 @@ export const ProductProvider = ({ children }: any) => {
 
         product.company_name = product.company.company_name;
 
-        setProducts(product);
+        setProducts([product]);
     }
 
     const getProductsByCompany = async(companyName: String) => {
