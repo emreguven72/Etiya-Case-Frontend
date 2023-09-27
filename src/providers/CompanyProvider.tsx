@@ -43,7 +43,7 @@ export const CompanyProvider = ({ children }: any) => {
 
         var company = response.data;
 
-        setCompanies(company);
+        setCompanies([company]);
     }
 
     const getCompanyByName = async(companyName: String) => {
@@ -55,7 +55,7 @@ export const CompanyProvider = ({ children }: any) => {
 
         var company = response.data;
 
-        setCompanies(company);
+        setCompanies([company]);
     }
 
     const createCompany = async(company_name: String, company_legal_number: String, incorporation_country: String, website: String) => {
