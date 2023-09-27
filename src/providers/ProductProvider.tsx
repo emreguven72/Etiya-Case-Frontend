@@ -11,7 +11,7 @@ export const ProductProvider = ({ children }: any) => {
     const navigate = useNavigate();
 
     const getAllProducts = async() => {
-        const response = await axios.get(`http://localhost:3000/api/v1/products/getAll`, {
+        const response = await axios.get(`http://localhost:3001/api/v1/products/getAll`, {
             headers: {
                 Authorization: `Bearer ${token}`
             }
@@ -27,7 +27,7 @@ export const ProductProvider = ({ children }: any) => {
     }
 
     const getProductById = async(id: String) => {
-        const response = await axios.get(`http://localhost:3000/api/v1/products/getById/${id}`, {
+        const response = await axios.get(`http://localhost:3001/api/v1/products/getById/${id}`, {
             headers: {
                 Authorization: `Bearer ${token}`
             }
@@ -41,7 +41,7 @@ export const ProductProvider = ({ children }: any) => {
     }
 
     const getProductByName = async(productName: String) => {
-        const response = await axios.get(`http://localhost:3000/api/v1/products/getByProductName/${productName}`, {
+        const response = await axios.get(`http://localhost:3001/api/v1/products/getByProductName/${productName}`, {
             headers: {
                 Authorization: `Bearer ${token}`
             }
@@ -55,7 +55,7 @@ export const ProductProvider = ({ children }: any) => {
     }
 
     const getProductsByCompany = async(companyName: String) => {
-        const response = await axios.get(`http://localhost:3000/api/v1/products/getByCompanyName/${companyName}`, {
+        const response = await axios.get(`http://localhost:3001/api/v1/products/getByCompanyName/${companyName}`, {
             headers: {
                 Authorization: `Bearer ${token}`
             }
@@ -71,7 +71,7 @@ export const ProductProvider = ({ children }: any) => {
     }
 
     const createProduct = async(product_name: String, product_amount: number, amount_unit: String, company_name: String, product_category: String) => {
-        const response = await axios.post(`http://localhost:3000/api/v1/products/create`, {
+        const response = await axios.post(`http://localhost:3001/api/v1/products/create`, {
             product_name: product_name,
             product_amount: product_amount,
             amount_unit: amount_unit,
@@ -91,7 +91,7 @@ export const ProductProvider = ({ children }: any) => {
     }
 
     const deleteProduct = async(id: String) => {
-        const response = await axios.delete(`http://localhost:3000/api/v1/products/delete/${id}`,{
+        const response = await axios.delete(`http://localhost:3001/api/v1/products/delete/${id}`,{
             headers: {
                 Authorization: `Bearer ${token}`
             }
@@ -101,7 +101,7 @@ export const ProductProvider = ({ children }: any) => {
     }
 
     const updateProduct = async(id: String, product_name: String, product_amount: number, amount_unit: String, company_name: String, product_category: String) => {
-        const response = await axios.patch(`http://localhost:3000/api/v1/products/update`,{
+        const response = await axios.patch(`http://localhost:3001/api/v1/products/update`,{
             id: id,
             product_name: product_name,
             product_amount: product_amount,

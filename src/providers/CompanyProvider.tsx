@@ -11,7 +11,7 @@ export const CompanyProvider = ({ children }: any) => {
     const navigate = useNavigate();
 
     const getLatestCompanies = async() => {
-        const response = await axios.get(`http://localhost:3000/api/v1/companies/getLatestCompanies`, {
+        const response = await axios.get(`http://localhost:3001/api/v1/companies/getLatestCompanies`, {
             headers: {
                 Authorization: `Bearer ${token}`
             }
@@ -23,7 +23,7 @@ export const CompanyProvider = ({ children }: any) => {
     }
 
     const getAllCompanies = async() => {
-        const response = await axios.get(`http://localhost:3000/api/v1/companies/getAll`, {
+        const response = await axios.get(`http://localhost:3001/api/v1/companies/getAll`, {
             headers: {
                 Authorization: `Bearer ${token}`
             }
@@ -35,7 +35,7 @@ export const CompanyProvider = ({ children }: any) => {
     }
 
     const getCompanyById = async(id: String) => {
-        const response = await axios.get(`http://localhost:3000/api/v1/companies/getById/${id}`, {
+        const response = await axios.get(`http://localhost:3001/api/v1/companies/getById/${id}`, {
             headers: {
                 Authorization: `Bearer ${token}`
             }
@@ -47,7 +47,7 @@ export const CompanyProvider = ({ children }: any) => {
     }
 
     const getCompanyByName = async(companyName: String) => {
-        const response = await axios.get(`http://localhost:3000/api/v1/companies/getByCompanyName/${companyName}`, {
+        const response = await axios.get(`http://localhost:3001/api/v1/companies/getByCompanyName/${companyName}`, {
             headers: {
                 Authorization: `Bearer ${token}`
             }
@@ -59,7 +59,7 @@ export const CompanyProvider = ({ children }: any) => {
     }
 
     const createCompany = async(company_name: String, company_legal_number: String, incorporation_country: String, website: String) => {
-        const response = await axios.post(`http://localhost:3000/api/v1/companies/create`, {
+        const response = await axios.post(`http://localhost:3001/api/v1/companies/create`, {
             company_name: company_name,
             company_legal_number: company_legal_number,
             incorporation_country: incorporation_country,
@@ -74,7 +74,7 @@ export const CompanyProvider = ({ children }: any) => {
     }
 
     const deleteCompany = async(id: String) => {
-        const response = await axios.delete(`http://localhost:3000/api/v1/companies/delete/${id}`,{
+        const response = await axios.delete(`http://localhost:3001/api/v1/companies/delete/${id}`,{
             headers: {
                 Authorization: `Bearer ${token}`
             }
@@ -88,7 +88,7 @@ export const CompanyProvider = ({ children }: any) => {
     }
 
     const updateCompany = async(id: String, companyName: String, companyLegalNumber: String, incorporationCountry: String, website: String) => {
-        const response = await axios.patch(`http://localhost:3000/api/v1/companies/update`,{
+        const response = await axios.patch(`http://localhost:3001/api/v1/companies/update`,{
             id: id,
             company_name: companyName,
             company_legal_number: companyLegalNumber,

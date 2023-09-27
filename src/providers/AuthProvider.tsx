@@ -24,7 +24,7 @@ export const AuthProvider = ({ children }: any) => {
     const [auth, setAuth] = useState(localStorageAuthObject); //localStroage'dan al
 
     const login = async(username: String, password: String) => {
-        const response = await axios.post(`http://localhost:3000/api/v1/users/login`, {
+        const response = await axios.post(`http://localhost:3001/api/v1/users/login`, {
             username: username,
             password: password
         });
@@ -48,7 +48,7 @@ export const AuthProvider = ({ children }: any) => {
     }
 
     const signUp = async(name: String, username: String, password: String) => {
-        const response = await axios.post(`http://localhost:3000/api/v1/users/create`, {
+        const response = await axios.post(`http://localhost:3001/api/v1/users/create`, {
             name: name,
             username: username,
             password: password
@@ -60,7 +60,7 @@ export const AuthProvider = ({ children }: any) => {
     const logout = () => {
         var token = localStorage.getItem('token');
 
-        axios.post(`http://localhost:3000/api/v1/users/logout`, null, {
+        axios.post(`http://localhost:3001/api/v1/users/logout`, null, {
             headers: {
                 Authorization: `Bearer ${token}`
             }
